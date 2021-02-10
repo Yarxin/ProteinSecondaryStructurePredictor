@@ -3,5 +3,6 @@ class Model:
         self.id = ''
         self.sequence = ''
         self.int_sequence = ''
+        self.hot_encoded_sequence = [[]]
         self.secondary_structure = ''
         self.is_valid = False

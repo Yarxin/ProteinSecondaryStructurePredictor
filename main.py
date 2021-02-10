@@ -1,5 +1,6 @@
 from TextParser import read_record, letter_to_num, _aa_dict
 from JsonService import load_json
+from keras.preprocessing.text import Tokenizer
 from matplotlib import pyplot as plt
 input_path = 'Sequences/TextRecords/casp7/testing'
 json_path = 'Sequences/full_protein_dssp_annotations.json'
