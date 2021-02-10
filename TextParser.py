@@ -39,7 +39,7 @@ def letter_to_num(string, dict_):
     try:
         patt = re.compile('[' + ''.join(dict_.keys()) + ']')
         num_string = patt.sub(lambda m: dict_[m.group(0)] + ' ', string)
-        num = [int(i) / 19 for i in num_string.split()]
+        num = [int(i) for i in num_string.split()]
         return num, True
     except:
         print('Error')
