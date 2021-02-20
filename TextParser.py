@@ -4,9 +4,12 @@ import re
 NUM_DIMENSIONS = 3
 
 # Functions for conversion from Mathematica protein files to TFRecords
-_aa_dict = {'A': '0', 'C': '1', 'D': '2', 'E': '3', 'F': '4', 'G': '5', 'H': '6', 'I': '7', 'K': '8', 'L': '9',
+_aminoacids_dict = {'A': '0', 'C': '1', 'D': '2', 'E': '3', 'F': '4', 'G': '5', 'H': '6', 'I': '7', 'K': '8', 'L': '9',
             'M': '10', 'N': '11', 'P': '12', 'Q': '13', 'R': '14', 'S': '15', 'T': '16', 'V': '17', 'W': '18',
-            'Y': '19'}
+            'Y': '19', 'X': '20'}
+
+_secondary_structure_dict = {'G': '0', 'H': '1', 'I': '2', 'E': '3', 'B': '4', 'T': '5', 'S': '6', 'L': '7'}
+
 _dssp_dict = {'L': '0', 'H': '1', 'B': '2', 'E': '3', 'G': '4', 'I': '5', 'T': '6', 'S': '7'}
 _mask_dict = {'-': '0', '+': '1'}
 
@@ -42,7 +45,7 @@ def letter_to_num(string, dict_):
         num = [int(i) for i in num_string.split()]
         return num, True
     except:
-        print('Error')
+        # print('Error')
         return -1, False
 
 
@@ -58,7 +61,7 @@ def read_record(file_, num_evo_entries):
                 id_ = file_.readline()[:-1]
                 dict_.update({'id': id_})
             elif case('[PRIMARY]' + '\n'):
-                primary = letter_to_num(file_.readline()[:-1], _aa_dict)
+                primary = letter_to_num(file_.readline()[:-1], _aminoacids_dict)
                 dict_.update({'primary': primary})
             elif case('[EVOLUTIONARY]' + '\n'):
                 evolutionary = []

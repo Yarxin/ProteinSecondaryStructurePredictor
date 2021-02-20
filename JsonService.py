@@ -1,5 +1,5 @@
 import json
-from Model import Model
+from dataModel import dataModel
 
 
 def load_json(file_path):
@@ -7,7 +7,7 @@ def load_json(file_path):
     with open(file_path) as json_file:
         file = json.load(json_file)
     for element in file:
-        model = Model()
+        model = dataModel()
         obj = file[element]
         for string in obj:
             model.id = element

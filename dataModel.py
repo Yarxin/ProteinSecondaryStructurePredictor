@@ -1,8 +1,8 @@
-class Model:
+class dataModel:
     def __init__(self):
         self.id = ''
         self.sequence = ''
         self.int_sequence = ''
-        self.hot_encoded_sequence = [[]]
         self.secondary_structure = ''
+        self.secondary_structure_labeled = ''
         self.is_valid = False
