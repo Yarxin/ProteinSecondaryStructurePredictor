@@ -3,7 +3,6 @@ from ModelPreparator import ModelPreparator
 from matplotlib import pyplot as plt
 import model
 import dataProcessor
-import plotHistory
 json_path = 'Sequences/protein.json'
 
 model_list = load_json(json_path)
@@ -40,7 +39,6 @@ history = net.fit(X_train_r, Y_train, epochs=model.nn_epochs, batch_size=model.b
 scores = net.evaluate(X_test_r, Y_test)
 print("Loss: " + str(scores[0]) + ", Accuracy: " + str(scores[1]) + ", MAE: " + str(scores[2]))
 
-plotHistory.plitHistory(history, model.nn_epochs)
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
 loss = history.history['loss']
