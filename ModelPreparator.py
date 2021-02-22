@@ -1,7 +1,6 @@
-from TextParser import read_record, letter_to_num, _aminoacids_dict, _secondary_structure_dict
-from numpy import array, argmax
+from TextParser import letter_to_num, _aminoacids_dict, _secondary_structure_dict
+from numpy import array
 from keras.utils import to_categorical
-import numpy as np
 
 
 class ModelPreparator:
@@ -40,20 +39,3 @@ class ModelPreparator:
                 model_list.remove(item)
 
         return model_list
-
-    @staticmethod
-    def CreateX_Y_set(model_list):
-        X_set = []
-        Y_set = []
-
-        X = np.array([])
-        i = 0
-        for item in model_list:
-            X += item.hot_encoded_secondary_structure
-            X_set.append(X)
-            i += 1
-
-        xset = np.asarray(X_set)
-        print('nic')
-        # return X_set, Y_set
-

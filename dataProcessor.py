@@ -1,5 +1,7 @@
 import numpy as np
+from model import window_size
 import tensorflow as tf
+
 
 def PrepareData(model_list):
     X_set = str()
@@ -53,13 +55,15 @@ def ReshapeDataX(X_set):
         j = 0
         k = i
 
-        while j < 17:
+        while j < window_size:
             lista_poziom2.append(X_set[k])
             j += 1
             if k == len(X_set) - 1:
                 k = 0
             else:
                 k += 1
+            proc = k / len(X_set) * 100
+            print('Procent przetworzonych danych: ' + str(proc) + ' %')
         lista_poziom1.append(lista_poziom2)
         X = np.asarray(lista_poziom1)
         i += 1

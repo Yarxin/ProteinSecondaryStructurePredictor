@@ -9,22 +9,23 @@
 # L – coil (none of the above)
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Conv1D, BatchNormalization, Flatten
+from keras.layers import Dense, Dropout, Conv1D, BatchNormalization, Flatten, LSTM
 from keras import optimizers
 
 do_summary = True
 
 LR = 0.0009
+# LR = 0.0000003
 drop_out = 0.38
 batch_dim = 64
-nn_epochs = 35
+nn_epochs = 70
+window_size = 17
 
 loss = 'categorical_crossentropy'
 
 def CNN_model():
     m = Sequential()
-    # m.add(Conv1D(128, 5, padding='same', activation='relu', input_shape=(17, 20)))
-    m.add(Conv1D(128, 5, padding='same', activation='relu', input_shape=(17, 21)))
+    m.add(Conv1D(128, 5, padding='same', activation='relu', input_shape=(window_size, 21)))
     m.add(BatchNormalization())
     m.add(Dropout(drop_out))
     m.add(Conv1D(128, 3, padding='same', activation='relu'))
