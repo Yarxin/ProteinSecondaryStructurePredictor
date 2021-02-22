@@ -1,7 +1,8 @@
 from TextParser import letter_to_num, _aminoacids_dict, _secondary_structure_dict
 from numpy import array
 from keras.utils import to_categorical
-
+import numpy as np
+from TextParser import _aminoacids_dict
 
 class ModelPreparator:
 
@@ -22,15 +23,29 @@ class ModelPreparator:
 
         return x, y
 
+    # @staticmethod
+    # def GetOneHotEncoding(x, y):
+    #     data_x = array(x)
+    #     data_y = array(y)
+    #
+    #     X_set = to_categorical(data_x)
+    #     Y_set = to_categorical(data_y)
+    #
+    #     return X_set, Y_set
+
     @staticmethod
-    def GetOneHotEncoding(x, y):
-        data_x = array(x)
+    def GetOneHotEncoding(y):
         data_y = array(y)
 
-        X_set = to_categorical(data_x)
         Y_set = to_categorical(data_y)
 
-        return X_set, Y_set
+        return Y_set
+
+    @staticmethod
+    def GetEncodedAmino(x):
+        for amino in x:
+            pass
+
 
     @staticmethod
     def RemoveInvalidSequences(model_list):

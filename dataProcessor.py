@@ -1,6 +1,5 @@
 import numpy as np
 from model import window_size
-import tensorflow as tf
 
 
 def PrepareData(model_list):
@@ -12,6 +11,7 @@ def PrepareData(model_list):
 
     return X_set, Y_set
 
+
 def split_dataset(Dataset, seed=None):
     np.random.seed(seed)
     np.random.shuffle(Dataset)
@@ -21,6 +21,7 @@ def split_dataset(Dataset, seed=None):
     Test = Dataset[train_split:train_split+test_val_split, :, :]
     Validation = Dataset[train_split+test_val_split:, :, :]
     return Train, Test, Validation
+
 
 def SplitDataX(X_set):
     train_split = int(X_set.shape[0] * 0.8)
@@ -42,6 +43,7 @@ def SplitDataY(Y_set):
     Y_val = Y_set[train_split + test_val_split:, :]
 
     return Y_train, Y_test, Y_val
+
 
 def ReshapeDataX(X_set):
     X = np.array([])
@@ -68,6 +70,3 @@ def ReshapeDataX(X_set):
         X = np.asarray(lista_poziom1)
         i += 1
     return X
-
-
-

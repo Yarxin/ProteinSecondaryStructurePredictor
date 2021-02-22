@@ -1,3 +1,4 @@
+import TextParser
 from JsonService import load_json
 from ModelPreparator import ModelPreparator
 from matplotlib import pyplot as plt
@@ -19,10 +20,16 @@ print('Usunięto wadliwe sekwencje')
 X_set_string, Y_set_string = dataProcessor.PrepareData(model_list)
 X_set_int, Y_set_int = ModelPreparator.MakeIntsAgain(X_set_string, Y_set_string)
 
-X_set_encoded, Y_set_encoded = ModelPreparator.GetOneHotEncoding(X_set_int, Y_set_int)
+xxx = TextParser.ToAminoInternalCode(X_set_string)
+
+
+Y_set_encoded = ModelPreparator.GetOneHotEncoding(Y_set_int)
+# X_set_encoded, Y_set_encoded = ModelPreparator.GetOneHotEncoding(X_set_string, Y_set_int)
+
 print('Przygotowano zbiory danych')
 
-X_train, X_test, X_val = dataProcessor.SplitDataX(X_set_encoded)
+# X_train, X_test, X_val = dataProcessor.SplitDataX(X_set_encoded)
+X_train, X_test, X_val = dataProcessor.SplitDataX(xxx)
 Y_train, Y_test, Y_val = dataProcessor.SplitDataY(Y_set_encoded)
 
 X_train_r = dataProcessor.ReshapeDataX(X_train)
